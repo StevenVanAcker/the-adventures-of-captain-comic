@@ -1,0 +1,74 @@
+graph map {
+
+rankdir=LR;
+
+
+subgraph cluster_forest {
+    forest0 -- forest1 [ label="walk"];
+    forest1 -- forest2[ label="walk"];
+}
+
+    forest0 -- castle0[ label="door"];
+    forest2 -- comp2[ label="door"];
+    forest2 -- lake0[ label="door"];
+
+subgraph cluster_lake {
+    lake0 -- lake1[ label="walk"];
+    lake1 -- lake2[ label="walk"];
+}
+
+lake0 -- shed0[ label="door"];
+lake2 -- space0[ label="door"];
+lake2 -- base1[ label="door"];
+lake2 -- cave0[ label="door"];
+
+subgraph cluster_space {
+    space0 -- space1[ label="walk"];
+    space1 -- space2[ label="walk"];
+}
+
+space2 -- base0[ label="door"];
+
+subgraph cluster_base {
+    base0 -- base1[ label="walk"];
+    base1 -- base2[ label="walk"];
+    base2 -- base0[ label="walk"];
+    base2 -- base0[ label="door"];
+    base2 -- base1[ label="door"];
+    base1 -- base0[ label="door"];
+}
+
+
+subgraph cluster_cave {
+    cave0 -- cave1[ label="walk"];
+    cave1 -- cave2[ label="walk"];
+    cave0 -- cave2[ label="door"];
+    cave0 -- cave1[ label="door"];
+}
+
+subgraph cluster_shed {
+    shed0 -- shed1[ label="walk"];
+    shed1 -- shed2[ label="door"];
+}
+shed2 -- comp0[ label="door"];
+
+subgraph cluster_comp {
+    comp0 -- comp1[ label="walk"];
+    comp1 -- comp2[ label="walk"];
+}
+
+subgraph cluster_castle {
+    castle0 -- castle1[ label="door"];
+    castle0 -- castle2[ label="door"];
+    castle1 -- castle2[ label="door"];
+}
+
+start [shape=Mdiamond];
+end [shape=Msquare];
+
+start -- forest0;
+end -- castle0;
+
+}
+
+
